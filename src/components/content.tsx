@@ -122,9 +122,9 @@ const Content = () => {
 
                     </div>
 
-                    <div className="grid grid-cols-4 mt-10 mx-12 p-5 rounded-3xl">
+                    <div className=" mt-10 mx-12 p-5 rounded-3xl">
                         {orders.map((item) => (
-                           <Orders name={item.name} image={item.image} price={item.price}></Orders>
+                           <Orders id={item.id} name={item.name} image={item.image} price={item.price}></Orders>
                         ))}
 
                     </div>
