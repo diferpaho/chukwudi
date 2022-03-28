@@ -1,8 +1,18 @@
+import { useState } from "react";
 import Added from "./added";
 import Category from "./category";
 import Product from "./product";
 
 const Content = () => {
+
+    const [categories, setCategories] = useState('');
+    const [products, setProducts] = useState('');
+
+    const [orders, setOrders] = useState('');
+    const [selectedProduct, setSelectedProduct] = useState('');
+
+    
+
     return (
         <div id="main" className="container mx-auto grid grid-cols-3">
             <div className="1 col-span-3 lg:col-span-2  grid grid-cols-9">
