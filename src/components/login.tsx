@@ -28,7 +28,7 @@ const Login = () => {
         
     };
 
-    const [Message, setMessage] = useState("");
+    const [Message, setMessage] = useState("Enter your email and password");
     const [ShowNotification, setShowNotification] = useState(false);
 
     const showMessage = (message: SetStateAction<string>) => {
@@ -48,9 +48,7 @@ const Login = () => {
             );
             push("/home");
         } catch ({ message }) {
-            if (message === "Firebase: Error (auth/wrong-password).") {
-                showMessage("Contraseña incorrecta")
-            }
+            setMessage("Invalid email or password")
         }
     };
 
@@ -123,6 +121,7 @@ const Login = () => {
                     </div>
                     <div className="mt-8">
                         <button role="button" onClick={loginUser}className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full">Login</button>
+                        <p className="focus:outline-none text-sm mt-4 font-medium leading-none text-gray-500">{Message}</p>
                     </div>
                 
                 </div>
