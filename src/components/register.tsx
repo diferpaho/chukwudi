@@ -58,14 +58,14 @@ const Register = () => {
                         <label id="email" className="text-sm font-medium leading-none text-gray-800">
                             Email
                         </label>
-                        <input aria-labelledby="email" type="email" onChange={changeUser} className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                        <input aria-labelledby="email" type="email" onChange={changeUser} autoComplete="off" className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                     </div>
                     <div className="mt-6  w-full">
                         <label htmlFor="pass" className="text-sm font-medium leading-none text-gray-800">
                             Password
                         </label>
 
-                        <input id="pass" type="password" onChange={changePassword} className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                        <input id="pass" type="password" onChange={changePassword} autoComplete="off" className="bg-gray-200 border rounded  text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
 
                     </div>
                     <div className="mt-8">
