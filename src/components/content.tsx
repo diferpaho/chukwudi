@@ -1,12 +1,19 @@
 import { useState } from "react";
-import Added from "./added";
 import products from "../json/products.json";
 import categories from "../json/categories.json";
+import Navbar from "./navbar";
+
+interface IOrder {
+    id: number,
+    name: string,
+    price: number,
+    image: string
+}
 
 const Content = () => {
 
-    const [orders, setOrders] = useState('');
-    const [selectedProduct, setSelectedProduct] = useState('');
+    const [orders, setOrders] = useState<IOrder[]>([]);
+    const [total, setTotal] = useState(0);
 
     const min = {
         height: '50px'
@@ -17,13 +24,15 @@ const Content = () => {
     };
 
     const addProduct = (id: number, name: string, price: number, image: string) => {
-        console.log(id)
-        console.log(name)
-        console.log(price)
-        console.log(image)
+        const newProduct = [...orders, { id, name, price, image }]
+        setOrders(newProduct)
+        setTotal(total+price)
+
     };
 
     return (
+        <>
+        <Navbar quantity={orders.length}></Navbar>
         <div id="main" className="container mx-auto grid grid-cols-3">
             <div className="1 col-span-3 lg:col-span-2  grid grid-cols-9">
 
@@ -121,14 +130,20 @@ const Content = () => {
                 </div>
 
                 <div className="grid grid-cols-4 mt-10 mx-12 p-5 rounded-3xl">
-                    <Added></Added>
-                    <Added></Added>
-                    <Added></Added>
+                    {orders.map((item) => (
+                        <>
+                            <div className="text-gray-300 text-sm my-3  "><img className="w-full"
+                                src={item.image} alt="Sunset in the mountains" /></div>
+                            <button className="text-dark text-sm  my-3  text-left mx-2 col-span-2 font-bold">1 x {item.name}</button>
+                            <button className="text-gray-400 text-sm  my-3  my-auto">{item.price}</button>
+                        </>
+                    ))}
+                    
                 </div>
 
                 <div className="grid grid-cols-2 mt-10 mx-12 p-5 border-b-2">
                     <p className="text-dark text-2xl  my-3  my-auto">Total:</p>
-                    <p className="text-dark text-2xl  my-3  my-auto text-right font-bold">$25.99</p>
+                    <p className="text-dark text-2xl  my-3  my-auto text-right font-bold">${total}</p>
                 </div>
 
                 <div className="grid grid-cols-3 mt-10 mx-16 p-5 border-b-2 bg-yellow-400 rounded-3xl">
@@ -140,6 +155,7 @@ const Content = () => {
                 </div>
             </div>
         </div>
+    </>
     );
 };
 
