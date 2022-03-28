@@ -2,8 +2,7 @@ import { useState } from "react";
 import products from "../json/products.json";
 import categories from "../json/categories.json";
 import Navbar from "./navbar";
-import Categories from "./categories";
-import Orders from "./orders";
+
 
 interface IOrder {
     id: number,
@@ -68,7 +67,17 @@ const Content = () => {
                     </div>
 
                     {categories.map((item) => (
-                        <Categories id={item.id} name={item.name}></Categories>
+                        <div key={item.id.toString()} className="col-span-2 md:col-span-1">
+                            <button className={"p-3 border shadow-lg rounded-full " + (item.id === 1 ? "bg-yellow-400" : "hover:bg-yellow-400")}>
+                                <p className="text-3xl">
+                                    <img src={"assets/icons/" + item.name + ".svg"} width="40px" height="40px"
+                                        className="border rounded-full p-2 bg-white" />
+                                </p>
+                                <p className="mt-3 mb-5 text-xs">
+                                    {item.name}
+                                </p>
+                            </button>
+                        </div>
                     ))}
 
 
@@ -122,9 +131,14 @@ const Content = () => {
 
                     </div>
 
-                    <div className=" mt-10 mx-12 p-5 rounded-3xl">
+                    <div className="grid grid-cols-4 mt-10 mx-12 p-5 rounded-3xl">
                         {orders.map((item) => (
-                           <Orders id={item.id} name={item.name} image={item.image} price={item.price}></Orders>
+                            <>
+                                <div className="text-gray-300 text-sm my-3  "><img className="w-full"
+                                    src={item.image} alt="Sunset in the mountains" /></div>
+                                <button className="text-dark text-sm  my-3  text-left mx-2 col-span-2 font-bold">1 x {item.name}</button>
+                                <button className="text-gray-400 text-sm  my-3  my-auto">{item.price}</button>
+                            </>
                         ))}
 
                     </div>
